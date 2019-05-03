@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 
 from .cms_helpers import (add_post_handler, edit_post_handler,
                           remove_post_handler, get_post_handler,
@@ -18,7 +18,8 @@ def make_response(data=None, status_code=200, header=None):
 @cms.route("/<page>/<weight>/")
 def index_route(page=1, weight=20):  # list posts
     try:
-        result = get_post_handler(page=page, weight=weight)
+        return render_template("index.html")
+        result = get_all_posts_handler(page=page, weight=weight)
     except:
         raise
 

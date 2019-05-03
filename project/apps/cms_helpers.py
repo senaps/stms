@@ -1,5 +1,6 @@
 from .query_hanler import (get_post_by_title, get_post_byid,
-                           insert_post, edit_post, remove_post)
+                           insert_post, edit_post, remove_post,
+                           get_paginated_posts)
 from ..utils.error_helpers import AlreadyExists
 
 
