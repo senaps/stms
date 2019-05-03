@@ -11,4 +11,5 @@ def create_app():
 
 def register_blueprints(app):
     from .apps import cms
+
     app.register_blueprint(cms)
