@@ -12,4 +12,4 @@ class Post(db.Model):
     post_date = db.Column(db.Integer, default=get_current_timestamp())
     edit_date = db.Column(db.Integer)
     published = db.Column(db.Boolean, default=True)
-    generaetd = db.Column(db.Boolean, default=False)
+    generated = db.Column(db.Boolean, default=False)

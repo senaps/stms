@@ -15,7 +15,7 @@ def get_post_by_title(title):
 
 def insert_post(title, detail, published=True, generated=False):
     try:
-        new_entry = Post(title=tile, detail=detail, published=published,
+        new_entry = Post(title=title, detail=detail, published=published,
                          generated=generated)
         db.session.add(new_entry)
         db.session.commit()

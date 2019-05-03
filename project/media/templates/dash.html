@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		<h1 class="h2">Dashboard</h1>
+	</div>
+
+	<div class="table-responsive">
+{% if not posts.items %}
+	<h3>No posts yet!</h3>
+	<p>add new posts from <a href="#">here!</a></p>
+{% else %}
+<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">title</th>
+				<th scope="col">publish date</th>
+				<th scope="col">generated</th>
+				<th scope="col">actions</th>
+			</tr>
+		</thead>
+		<tbody>				
+			{% for post in posts.items %}
+			<tr>
+				<th scope="row">{{loop.index}}</th>
+				<td><a href="{{url_for('cms.edit_post', id=post.id)}}" >{{post.title}}</a></td>
+				<td>{{post.published}}</td>
+				<td>{{post.generated}}</td>
+				<td>
+					  <a class="nav-link active" href="{{url_for('cms.edit_post', id=post.id)}}">
+								<span data-feather="pen"></span>
+						edit</a>
+						<a class="nav-link active"  href="{{url_for('cms.remove_post_route', id=post.id)}}">
+								<span data-feather="remove"></span>
+						remove</a>
+				</td>
+			</tr>
+			{% endfor %}			
+		</tbody>
+	</table>
+{% endif %}
+</div>
+
+{% endblock %}
+

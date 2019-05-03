@@ -4,7 +4,7 @@ from .config import get_conf
 
 def create_app(conf_name):
     app = Flask(__name__, template_folder="media/templates",
-                static_folder="/media/statics")
+                          static_folder="media/statics")
 
     config_application(app=app, conf_name=conf_name)
     register_extenstions(app=app)
