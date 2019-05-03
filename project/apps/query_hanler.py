@@ -5,6 +5,10 @@ def get_paginated_posts(page, weight):
     return Post.query.paginate(page=page, per_page=weight, error_out=False)
 
 
+def get_fresh_posts():
+    return Post.query.filter_by(generated=False).all()
+
+
 def get_post_byid(id):
     return Post.query.filter_by(id=id).first()
 
@@ -39,6 +43,12 @@ def edit_post(post_obj, title, detail, published, generated):
     except:
         db.rollback()
         raise
+
+
+def mark_as_gen(posts):
+    for post in posts:
+        post.generated = True
+    db.session.commit()
 
 
 def remove_post(post_obj):

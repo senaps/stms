@@ -1,6 +1,9 @@
 import os
 
 
+export_path = os.environ.get('export_path', '/tmp/stms_exports/')
+curr_path = os.path.abspath(os.path.curdir)
+
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 

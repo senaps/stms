@@ -1,6 +1,6 @@
-from .query_hanler import (get_post_by_title, get_post_byid,
+from .query_hanler import (get_post_by_title, get_post_byid, mark_as_gen,
                            insert_post, edit_post, remove_post,
-                           get_paginated_posts)
+                           get_paginated_posts, get_fresh_posts)
 from ..utils.error_helpers import AlreadyExists
 
 
@@ -40,3 +40,18 @@ def remove_post_handler(id):
         raise ValueError("no post with that id exists")
     remove_post(post_obj=post_obj)
     return True
+
+
+def generate_handle():
+    from .generate_helpers import render_template, zip_file_func, copy_blank_media
+    from ..config import export_path, curr_path
+
+    posts = get_fresh_posts()
+    mark_as_gen(posts=posts)
+    copy_blank_media(dir_path=export_path, curr_path=curr_path)
+    render_template(posts=posts, export_path=export_path)
+    file_path = zip_file_func(dir_path=export_path)
+    return file_path
+
+
+

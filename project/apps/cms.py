@@ -1,9 +1,9 @@
-from flask import (Blueprint, request, jsonify,
+from flask import (Blueprint, request, jsonify, send_file,
                    render_template, redirect, url_for)
 
 from .cms_helpers import (add_post_handler, edit_post_handler,
                           remove_post_handler, get_post_handler,
-                          get_all_posts_handler)
+                          get_all_posts_handler, generate_handle)
 from ..utils.error_helpers import AlreadyExists
 
 
@@ -74,7 +74,6 @@ def edit_post_route(id):
         return redirect(url_for('cms.index_route'))
     except ValueError:
         return redirect(url_for('cms.edit_post', id=id))
-
     except:
         raise
 
@@ -86,5 +85,14 @@ def remove_post_route(id):
         return redirect(url_for('cms.index_route'))
     except ValueError:
         return redirect(url_for('cms.index_route'))
+    except:
+        raise
+
+
+@cms.route("/generate/")
+def generate_route():
+    try:
+        filename = generate_handle()
+        return send_file(filename, as_attachment=True)
     except:
         raise
