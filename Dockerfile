@@ -1,4 +1,4 @@
-From python:3.6-alpine
+From python:3.6
 
 WORKDIR /usr/src/app
 
