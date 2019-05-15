@@ -34,14 +34,14 @@ def edit_post(post_obj, title, detail, published, generated):
             post_obj.title = title
         if detail and post_obj.detail != detail:
             post_obj.detail = detail
-        if published and post_obj.published != published:
+        if published is not None and post_obj.published != published:
             post_obj.published = published
-        if generated and post_obj.generated != generated:
+        if generated is not None and post_obj.generated != generated:
             post_obj.generated = generated
         db.session.commit()
         return True
     except:
-        db.rollback()
+        db.session.rollback()
         raise
 
 

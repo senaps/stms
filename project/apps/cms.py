@@ -35,7 +35,7 @@ def add_post():  # edit or add a new post form!
         raise
 
 
-@cms.route("/edit/<id>")
+@cms.route("/edit/<id>/")
 def edit_post(id=None):  # edit or add a new post form!
     try:
         post = get_post_handler(id=id)
@@ -68,7 +68,11 @@ def edit_post_route(id):
         title = request.form.get('title')
         detail = request.form.get('detail')
         publish = request.form.get('published')
-        generated = request.form.get('generated')
+        generated = request.form.get('generated', 'off')
+        if generated == 'on':
+            generated = True
+        elif generated == 'off':
+            generated = False
         edit_post_handler(id=id, title=title, detail=detail,
                           generated=generated, published=publish)
         return redirect(url_for('cms.index_route'))
