@@ -60,7 +60,6 @@ def add_post_route():
         thumb = request.files['thumb']
         filename = None
         if thumb:
-            print(upload_path)
             filename = secure_filename(thumb.filename)
             thumb.save(os.path.join(upload_path, filename))
         add_post_handler(title=title, detail=detail, thumb=filename)

@@ -57,11 +57,22 @@ def zip_file_func(dir_path):
     return zip_file.filename
 
 
-def copy_blank_media(dir_path, curr_path, media_path="project/media/blank_media/"):
+def copy_blank_media(dir_path, curr_path,
+                     media_path="project/media/blank_media/"):
     import shutil
 
     media = os.path.join(curr_path, media_path)
-    if os.path.exists(dir_path + '/media'):
+    if os.path.exists(dir_path):
         shutil.rmtree(dir_path)
     shutil.copytree(src=media, dst=dir_path)
 
+
+def copy_thumbs(posts, dest):
+    import shutil, os
+    from ..config import upload_path
+
+    dst = os.path.join(dest, '/media/images/')
+    for post in posts:
+        src = os.path.join(upload_path + post.thumb)
+        print(src)
+        shutil.copy2(src, dst)

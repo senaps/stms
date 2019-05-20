@@ -43,12 +43,14 @@ def remove_post_handler(id):
 
 
 def generate_handle():
-    from .generate_helpers import render_template, zip_file_func, copy_blank_media
+    from .generate_helpers import (render_template, zip_file_func,
+                                   copy_blank_media, copy_thumbs)
     from ..config import export_path, curr_path
 
     posts = get_fresh_posts()
     mark_as_gen(posts=posts)
     copy_blank_media(dir_path=export_path, curr_path=curr_path)
+    copy_thumbs(posts=posts, dest=export_path)
     render_template(posts=posts, export_path=export_path)
     file_path = zip_file_func(dir_path=export_path)
     return file_path
