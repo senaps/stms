@@ -1,9 +1,13 @@
+import os
+
 from flask import (Blueprint, request, jsonify, send_file,
                    render_template, redirect, url_for)
+from werkzeug import secure_filename
 
 from .cms_helpers import (add_post_handler, edit_post_handler,
                           remove_post_handler, get_post_handler,
                           get_all_posts_handler, generate_handle)
+from ..config import upload_path
 from ..utils.error_helpers import AlreadyExists
 
 
@@ -53,7 +57,13 @@ def add_post_route():
     try:
         title = request.form.get('title')
         detail = request.form.get('detail')
-        add_post_handler(title=title, detail=detail)
+        thumb = request.files['thumb']
+        filename = None
+        if thumb:
+            print(upload_path)
+            filename = secure_filename(thumb.filename)
+            thumb.save(os.path.join(upload_path, filename))
+        add_post_handler(title=title, detail=detail, thumb=filename)
         return redirect(url_for('cms.index_route'))
     except AlreadyExists:
         header = {"message": "title already exists in the system"}

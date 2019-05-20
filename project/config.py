@@ -3,10 +3,10 @@ import os
 
 export_path = os.environ.get('export_path', '/tmp/stms_exports/')
 curr_path = os.path.abspath(os.path.curdir)
+upload_path = os.path.join(curr_path, "project/media/images/")
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
 
 class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/stms.db'

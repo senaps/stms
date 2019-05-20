@@ -17,10 +17,10 @@ def get_post_by_title(title):
     return Post.query.filter_by(title=title).first()
 
 
-def insert_post(title, detail, published=True, generated=False):
+def insert_post(title, detail, thumb,published=True, generated=False):
     try:
         new_entry = Post(title=title, detail=detail, published=published,
-                         generated=generated)
+                         generated=generated, thumb=thumb)
         db.session.add(new_entry)
         db.session.commit()
         return True

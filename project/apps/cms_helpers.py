@@ -1,6 +1,6 @@
-from .query_hanler import (get_post_by_title, get_post_byid, mark_as_gen,
-                           insert_post, edit_post, remove_post,
-                           get_paginated_posts, get_fresh_posts)
+from .query_handler import (get_post_by_title, get_post_byid, mark_as_gen,
+                            insert_post, edit_post, remove_post,
+                            get_paginated_posts, get_fresh_posts)
 from ..utils.error_helpers import AlreadyExists
 
 
@@ -18,10 +18,10 @@ def get_post_handler(id):
     return post_obj
 
 
-def add_post_handler(title, detail):
+def add_post_handler(title, detail, thumb):
     if get_post_by_title(title=title):
         raise AlreadyExists("post with this title already in db")
-    insert_post(title=title, detail=detail)
+    insert_post(title=title, detail=detail, thumb=thumb)
     return True
 
 
