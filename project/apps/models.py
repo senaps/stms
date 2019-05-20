@@ -13,4 +13,4 @@ class Post(db.Model):
     edit_date = db.Column(db.Integer)
     published = db.Column(db.Boolean, default=True)
     generated = db.Column(db.Boolean, default=False)
-    thumb = db.Column(db.Sring(150))
+    thumb = db.Column(db.String(150))
