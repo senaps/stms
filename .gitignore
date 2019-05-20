@@ -6,3 +6,4 @@
 *session*
 *.env*
 *__pycache__*
+media/images/*
