@@ -7,6 +7,7 @@ upload_path = os.path.join(curr_path, "project/media/images/")
 
 class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SEND_FILE_MAX_AGE_DEFAULT = 0
 
 class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:////tmp/stms.db'

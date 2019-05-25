@@ -105,6 +105,7 @@ def remove_post_route(id):
 @cms.route("/generate/")
 def generate_route():
     try:
+        print("this hit")
         filename = generate_handle()
         return send_file(filename, as_attachment=True)
     except:

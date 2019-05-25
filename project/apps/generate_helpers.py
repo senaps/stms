@@ -71,8 +71,10 @@ def copy_thumbs(posts, dest):
     import shutil, os
     from ..config import upload_path
 
-    dst = os.path.join(dest, '/media/images/')
+    dst = dest + '/media/images/'
     for post in posts:
-        src = os.path.join(upload_path + post.thumb)
-        print(src)
-        shutil.copy2(src, dst)
+        if post.thumb:
+            src = os.path.join(upload_path + post.thumb)
+            if not os.path.exists(dst):
+                os.makedirs(name=dst)
+            shutil.copy2(src, dst + post.thumb)
