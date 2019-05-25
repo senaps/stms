@@ -71,7 +71,7 @@
             <p class="card-text">{{post.detail}}</p>
           </div>
           <div class="card-footer text-muted">
-            Posted on {{post.post_date}}
+            Posted on {{post.post_date|jalali_date}}
           </div>
         </div>
         {% endfor %}

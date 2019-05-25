@@ -9,6 +9,7 @@ def create_app(conf_name):
     config_application(app=app, conf_name=conf_name)
     register_extenstions(app=app)
     register_blueprints(app=app)
+    register_filters(app=app)
 
     return app
 
@@ -28,3 +29,11 @@ def register_blueprints(app):
     from .apps import cms
 
     app.register_blueprint(cms)
+
+
+def register_filters(app):
+    from .utils import jalali_time
+
+    @app.template_filter('jalali_date')
+    def jalali_date(timestamp):
+        return jalali_time(timestamp=timestamp)

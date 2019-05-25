@@ -9,4 +9,7 @@ def get_current_timestamp():
 
 
 def jalali_time(timestamp):
-    jdatetime.datetime.utcfromtimestamp(timestamp=timestamp)
+    return jdatetime.datetime.utcfromtimestamp(timestamp=timestamp)
+
+def jalali_datetime(datetime_stamp):
+    return jdatetime.datetime.fromgregorian(datetime_stmap)
