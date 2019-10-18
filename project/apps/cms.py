@@ -11,7 +11,7 @@ from ..config import upload_path
 from ..utils.error_helpers import AlreadyExists
 
 
-cms = Blueprint("cms", __name__, url_prefix="/cms")
+cms = Blueprint("cms", __name__)
 
 
 def make_response(data=None, status_code=200, header=None):
